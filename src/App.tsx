@@ -5,8 +5,6 @@ import Header from './components/layouts/Header.tsx';
 import SearchBar from './components/layouts/SearchBar.tsx';
 import MainSection from './components/layouts/MainSection.tsx';
 
-
-
 function App() {
   const currentWeather = {
     city: "Dublin",
@@ -62,6 +60,7 @@ function App() {
             currentWeather={currentWeather}
             dailyForecast={dailyForecast}
             stats={stats}
+            hourlyForecast={hourlyForecast}
           />
       </div>
     </>

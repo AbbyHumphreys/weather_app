@@ -4,13 +4,11 @@ export default function SearchBar (){
    
   return (
       <>
-        <section>
-            <div className="searchbar-section">
-                <form action="#">
-                    <input type="text" placeholder="Search for a city..." />
-                    <input type="submit" value="Search" />
-                </form>
-            </div>
+        <section className="searchbar-section">
+            <form action="#">
+                <input className="search-box" type="text" placeholder="Search for a city..." />
+                <input className="button" type="submit" value="Search" />
+            </form>
         </section>
         
       </>

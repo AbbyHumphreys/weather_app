@@ -1,5 +1,6 @@
+@use "../../variables" as *
+
 .main-section
-    border: 1px solid red
     display: grid
     grid-template-columns: 2fr 1fr
     gap: 2rem
@@ -10,16 +11,15 @@
         grid-template-columns: 1fr
 
 .left-side
-    border: 1px solid red
     display: flex
     flex-direction: column
     gap: 2rem
 
 .right-side
-    border: 1px solid red
     display: flex
     flex-direction: column
     gap: 2rem
+    background-color: $neutral-800
 
 .current-weather-section
     background-image: url('/src/assets/images/bg-today-large.svg')
@@ -29,6 +29,12 @@
 
 .current-weather-container
     display: flex
-    border: 2px red solid
     justify-content: space-between
     padding: 2rem
+
+.hourly-forecast-section
+    border-radius: 20px
+
+.title-section
+    display: flex
+

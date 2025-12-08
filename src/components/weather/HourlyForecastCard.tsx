@@ -12,6 +12,11 @@ export default function HourlyForecastItem ({ time, weatherIcon, temperature }: 
   minute: "2-digit",
 }); 
   return (
-        <div>This is the time: {timeLabel}, {temperature} and <img src={weatherIcon} alt="Weather icon" /></div>
+        <>
+          <div className="hourly-forecast-container">
+            <div className="hourly-forecast-card"><img className="weather-icon" src={weatherIcon} alt="Weather icon" />{timeLabel}{temperature}</div>
+          </div>
+        </>
+        
     );
 }

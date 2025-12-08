@@ -1,21 +1,24 @@
 import React from "react";
 import CurrentWeatherCard from "../weather/CurrentWeatherCard";
 import DailyForecastCard from "../weather/DailyForecastCard";
+import HourlyForecastCard from "../weather/HourlyForecastCard";
 import StatCard from "../weather/StatCard";
 import type { CurrentWeather, Stats } from "../../types/weatherTypes";
 import type { DailyForecastItem } from "../../types/weatherTypes";
+import type { HourlyForecastItem as HourlyForecastItemType } from "../../types/weatherTypes";
 
 type MainSectionProps = {
   currentWeather: CurrentWeather;        
   dailyForecast: DailyForecastItem[];
   stats: Stats; 
-  // hourlyForecast: HourlyForecastItemType[];
+  hourlyForecast: HourlyForecastItemType[];
 };
 
 export default function MainSection ({
   currentWeather,
   stats,
-  dailyForecast
+  dailyForecast,
+  hourlyForecast
 }: MainSectionProps){
    
   return (
@@ -39,7 +42,16 @@ export default function MainSection ({
             </div>
             <div className="right-side">
                 <div className="hourly-forecast-section">
-                    <p>HourlyForecast Section</p>
+                    <div className="title-section">
+                      <div className="title">Hourly Forecast</div>
+                      <div className="day-container">Tuesday</div>
+                    </div>
+                    {hourlyForecast.map((item) => (
+                      <HourlyForecastCard
+                        key={item.time.toISOString()}
+                        {...item}
+                      />
+                    ))}
                 </div>
             </div>
         </section>

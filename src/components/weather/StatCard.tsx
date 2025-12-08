@@ -13,19 +13,19 @@ export default function StatsCard ({ feelsLike, humidity, windspeed, precipitati
       <div className="stats-card-container">
         <div className="stat-card">
             <p>Feels Like</p>
-            {feelsLike}
+            <p>{feelsLike}°</p>
         </div> 
         <div className="stat-card">
             <p>Humidity</p>
-            {humidity}
+            <p>{humidity}%</p>
         </div> 
         <div className="stat-card">
-            <p>Windspeed</p>
-            {windspeed}
+            <p>Wind</p>
+            <p>{windspeed} km/h</p>
         </div> 
         <div className="stat-card">
             <p>Precipitation</p>
-            {precipitation}
+            <p>{precipitation} mm</p>
         </div>
       </div>
     </>
