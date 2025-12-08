@@ -1,0 +1,34 @@
+.main-section
+    border: 1px solid red
+    display: grid
+    grid-template-columns: 2fr 1fr
+    gap: 2rem
+    padding: 2rem
+    margin-top: 2rem
+
+    @media (max-width: 768px)
+        grid-template-columns: 1fr
+
+.left-side
+    border: 1px solid red
+    display: flex
+    flex-direction: column
+    gap: 2rem
+
+.right-side
+    border: 1px solid red
+    display: flex
+    flex-direction: column
+    gap: 2rem
+
+.current-weather-section
+    background-image: url('/src/assets/images/bg-today-large.svg')
+    background-size: cover
+    background-repeat: no-repeat
+    border-radius: 20px
+
+.current-weather-container
+    display: flex
+    border: 2px red solid
+    justify-content: space-between
+    padding: 2rem
