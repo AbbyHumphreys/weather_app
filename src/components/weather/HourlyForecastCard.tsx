@@ -14,7 +14,14 @@ export default function HourlyForecastItem ({ time, weatherIcon, temperature }: 
   return (
         <>
           <div className="hourly-forecast-container">
-            <div className="hourly-forecast-card"><img className="weather-icon" src={weatherIcon} alt="Weather icon" />{timeLabel}{temperature}</div>
+            <div className="hourly-forecast-card">
+              <div className="left text-preset-6">
+                <img className="weather-icon" src={weatherIcon} alt="Weather icon" />{timeLabel}
+              </div>
+              <div className="right text-preset-7">
+                {temperature}&deg;
+              </div>
+            </div>
           </div>
         </>
         

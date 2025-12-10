@@ -11,11 +11,10 @@ export default function Header (){
                 <img src={WeatherAppLogo} alt="Weather App Logo" />
                 <UnitsToggle />
             </div>
-            <div className="title-section">
+            <div className="title-section text-preset-7">
                 <h1>How's the sky looking today?</h1>
             </div>
         </header>
-        
       </>
     );
 }

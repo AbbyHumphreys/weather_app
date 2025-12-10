@@ -18,10 +18,10 @@ export default function CurrentWeatherCard ({ city, country, date, temperature, 
       <>
         <section className="current-weather-container">
           <div className="location-container">
-            <div>{city}, {country}</div>
-            <div>{dateLabel}</div>
+            <div className="text-preset-4">{city}, {country}</div>
+            <div className="text-preset-6">{dateLabel}</div>
           </div>
-          <div><img src={weatherIcon} alt="Weather icon"  width="60px"/>{temperature}°</div>
+          <div><img src={weatherIcon} alt="Weather icon"  width="60px"/><span className="text-preset-1">{temperature}°</span></div>
         </section>
       </>
     );

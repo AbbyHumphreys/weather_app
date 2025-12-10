@@ -32,19 +32,22 @@ export default function MainSection ({
                     <StatCard {...stats} />
                 </div>
                 <div className="daily-forecast-section">
-                    {dailyForecast.map((item) => (
-                      <DailyForecastCard
-                        key={item.date.toISOString()}
-                        {...item}
-                      />
-                    ))}
+                    <div className="title text-preset-5">Daily Forecast</div>
+                    <div className="daily-forecast-list">
+                      {dailyForecast.map((item) => (
+                        <DailyForecastCard
+                          key={item.date.toISOString()}
+                          {...item}
+                        />
+                      ))}
+                    </div>
                 </div>
             </div>
             <div className="right-side">
                 <div className="hourly-forecast-section">
                     <div className="title-section">
-                      <div className="title">Hourly Forecast</div>
-                      <div className="day-container">Tuesday</div>
+                      <div className="title text-preset-5">Hourly Forecast</div>
+                      <div className="day-container text-preset-7">Tuesday</div>
                     </div>
                     {hourlyForecast.map((item) => (
                       <HourlyForecastCard
