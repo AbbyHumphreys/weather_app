@@ -52,6 +52,10 @@ export interface CurrentWeather {
     date: Date;
     temperature: number;
     weatherIcon: string;
+    precipitation: number;
+    windspeed: number;
+    feelsLike: number;
+    humidity: number;
 }
 
 export interface Stats {

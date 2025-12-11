@@ -1,5 +1,3 @@
-import React from "react";
-
 type CurrentWeatherCardProps = {
   city: string;
   country: string;

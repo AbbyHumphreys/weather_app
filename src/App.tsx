@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { fetchCurrentWeather } from './services/weatherService.ts';
+import type { CurrentWeather, Stats } from './types/weatherTypes.ts';
 import "./styles/main.sass";
 import DrizzleIcon from "../src/assets/images/icon-drizzle.webp";
 import Header from './components/layouts/Header.tsx';
@@ -6,20 +8,12 @@ import SearchBar from './components/layouts/SearchBar.tsx';
 import MainSection from './components/layouts/MainSection.tsx';
 
 function App() {
-  const currentWeather = {
-    city: "Dublin",
-    country: "Ireland",
-    date: new Date("2025-06-15T09:00:00Z"),
-    temperature: 20,
-    weatherIcon: DrizzleIcon,
-  }
 
-  const stats = {
-    feelsLike: 18,
-    humidity: 46,
-    windspeed: 14,
-    precipitation: 0
-  }
+  const [currentWeather, setCurrentWeather] = useState<CurrentWeather | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  
 
   const dailyForecast = [
   {
@@ -48,7 +42,49 @@ function App() {
       temperature: 18,
     }
   ]
-    
+
+   // 🔄 Fetch on mount
+  useEffect(() => {
+    fetchCurrentWeather(52.52, 13.41, "metric")
+      .then((result) => {
+        setCurrentWeather(result);
+        setError(null);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Sorry, we couldn't load the weather.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  // ⏳ Loading state
+  if (isLoading) {
+    return (
+      <div className="container">
+        <Header />
+        <p className="text-preset-7">Loading weather…</p>
+      </div>
+    );
+  }
+
+  // ❌ Error / no data
+  if (error || !currentWeather) {
+    return (
+      <div className="container">
+        <Header />
+        <p className="text-preset-7">{error ?? "No weather data available"}</p>
+      </div>
+    );
+  }
+  
+  const stats: Stats = {
+    feelsLike: currentWeather.feelsLike,
+    humidity: currentWeather.humidity,
+    windspeed: currentWeather.windspeed,
+    precipitation: currentWeather.precipitation,
+  };
 
   return (
     
