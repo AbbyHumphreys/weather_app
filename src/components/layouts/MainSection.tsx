@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CurrentWeatherCard from "../weather/CurrentWeatherCard";
 import DailyForecastCard from "../weather/DailyForecastCard";
 import HourlyForecastCard from "../weather/HourlyForecastCard";
@@ -20,7 +20,28 @@ export default function MainSection ({
   dailyForecast,
   hourlyForecast
 }: MainSectionProps){
-   
+  
+  const [selectedDay, setSelectedDay] = useState<string>("");
+  
+  useEffect(() => {
+  if (dailyForecast.length === 0) return;
+
+  setSelectedDay((prev) => {
+      if (prev !== "") return prev; // user already picked a day
+      return dailyForecast[0].date.toISOString().slice(0, 10);
+    });
+  }, [dailyForecast]);
+
+  const toDayKey = (d: Date) => d.toISOString().slice(0, 10);
+
+  const filteredHourly = hourlyForecast.filter((item) => {
+    return toDayKey(item.time) === selectedDay;
+  });
+
+  const visibleHourly = filteredHourly.slice(0, 8);
+
+
+
   return (
       <>
         <section className="main-section">
@@ -47,9 +68,24 @@ export default function MainSection ({
                 <div className="hourly-forecast-section">
                     <div className="title-section">
                       <div className="title text-preset-5">Hourly Forecast</div>
-                      <div className="day-container text-preset-7">Tuesday</div>
+                      <select
+                        className="day-container text-preset-7"
+                        value={selectedDay}
+                        onChange={(e) => setSelectedDay(e.target.value)}
+                      >
+                        {dailyForecast.map((day) => {
+                          const value = toDayKey(day.date);
+                          const label = day.date.toLocaleDateString("en-GB", { weekday: "long" });
+
+                          return (
+                            <option key={value} value={value}>
+                              {label}
+                            </option>
+                          );
+                        })}
+                      </select>
                     </div>
-                    {hourlyForecast.map((item) => (
+                    {visibleHourly.map((item) => (
                       <HourlyForecastCard
                         key={item.time.toISOString()}
                         {...item}

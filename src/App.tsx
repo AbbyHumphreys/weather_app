@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchCurrentWeather } from './services/weatherService.ts';
-import type { CurrentWeather, Stats } from './types/weatherTypes.ts';
+import type { CurrentWeather, Stats, DailyForecastItem, HourlyForecastItem } from './types/weatherTypes.ts';
 import "./styles/main.sass";
 import DrizzleIcon from "../src/assets/images/icon-drizzle.webp";
 import Header from './components/layouts/Header.tsx';
@@ -10,44 +10,18 @@ import MainSection from './components/layouts/MainSection.tsx';
 function App() {
 
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather | null>(null);
+  const [dailyForecast, setDailyForecast] = useState<DailyForecastItem[]>([]);
+  const [hourlyForecast, setHourlyForecast] = useState<HourlyForecastItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  
-
-  const dailyForecast = [
-  {
-    date: new Date("2025-06-15"),
-    weatherIcon: DrizzleIcon,
-    highTemp: 20,
-    lowTemp: 15
-  },
-  {
-    date: new Date("2025-06-16"),
-    weatherIcon: DrizzleIcon,
-    highTemp: 18,
-    lowTemp: 12
-  }
-];
-
-  const hourlyForecast = [
-    {
-      weatherIcon: DrizzleIcon,
-      time: new Date("2025-06-15T12:00"),
-      temperature: 20,
-    },
-    {
-      weatherIcon: DrizzleIcon,
-      time: new Date("2025-07-15T12:00"),
-      temperature: 18,
-    }
-  ]
-
-   // 🔄 Fetch on mount
+  // Fetch on mount
   useEffect(() => {
     fetchCurrentWeather(52.52, 13.41, "metric")
-      .then((result) => {
-        setCurrentWeather(result);
+      .then(({currentWeather, dailyForecast, hourlyForecast}) => {
+        setCurrentWeather(currentWeather);
+        setDailyForecast(dailyForecast);
+        setHourlyForecast(hourlyForecast);
         setError(null);
       })
       .catch((err) => {
