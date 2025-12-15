@@ -1,5 +1,3 @@
-import React from "react";
-
 type HourlyForecastItemProps = {
   time: Date;
   weatherIcon: string;
@@ -13,7 +11,6 @@ export default function HourlyForecastItem ({ time, weatherIcon, temperature }: 
 }); 
   return (
         <>
-          <div className="hourly-forecast-container">
             <div className="hourly-forecast-card">
               <div className="left text-preset-6">
                 <img className="weather-icon" src={weatherIcon} alt="Weather icon" />{timeLabel}
@@ -22,7 +19,6 @@ export default function HourlyForecastItem ({ time, weatherIcon, temperature }: 
                 {temperature}&deg;
               </div>
             </div>
-          </div>
         </>
         
     );

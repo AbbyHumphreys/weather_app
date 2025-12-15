@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { fetchCurrentWeather } from './services/weatherService.ts';
 import type { CurrentWeather, Stats, DailyForecastItem, HourlyForecastItem } from './types/weatherTypes.ts';
 import "./styles/main.sass";
-import DrizzleIcon from "../src/assets/images/icon-drizzle.webp";
 import Header from './components/layouts/Header.tsx';
 import SearchBar from './components/layouts/SearchBar.tsx';
 import MainSection from './components/layouts/MainSection.tsx';

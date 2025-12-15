@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CurrentWeatherCard from "../weather/CurrentWeatherCard";
 import DailyForecastCard from "../weather/DailyForecastCard";
 import HourlyForecastCard from "../weather/HourlyForecastCard";
@@ -85,12 +85,14 @@ export default function MainSection ({
                         })}
                       </select>
                     </div>
+                    <div className="hourly-forecast-list">
                     {visibleHourly.map((item) => (
                       <HourlyForecastCard
                         key={item.time.toISOString()}
                         {...item}
                       />
                     ))}
+                    </div>
                 </div>
             </div>
         </section>
